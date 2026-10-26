@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><title>ShopwithB2w</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{--bg:#faf8f5;--card:#fff;--ink:#1c1b19;--mut:#6b675f;--line:#e8e3da;--acc:#0f6b4f;--accink:#fff;--soft:#e6f2ec;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root{--bg:#141412;--card:#1e1e1b;--ink:#f2efe9;--mut:#a29d92;--line:#33322d;--acc:#3ecf9b;--accink:#0b1f17;--soft:#1b2b24;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--line);z-index:5;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 16px}
+.logo{font-weight:800;font-size:20px;letter-spacing:-.5px}.logo b{color:var(--acc)}
+button{font:inherit;cursor:pointer}
+.btn{background:var(--acc);color:var(--accink);border:0;border-radius:10px;padding:11px 16px;font-weight:700}
+.btn.sec{background:var(--soft);color:var(--acc)}
+.wrap{max-width:1000px;margin:auto;padding:0 16px}
+.hero{padding:30px 0 12px}.hero h1{font-size:clamp(28px,6vw,44px);line-height:1.1;margin:0 0 10px;letter-spacing:-1px}
+.hero p{color:var(--mut);max-width:520px;margin:0 0 16px}
+.trust{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+.trust div{background:var(--soft);border-radius:12px;padding:12px;font-size:14px}.trust b{display:block}
+.cats{display:flex;gap:8px;overflow-x:auto;padding:8px 0}
+.cats button{white-space:nowrap;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:99px;padding:7px 14px}
+.cats button.on{background:var(--acc);color:var(--accink);border-color:var(--acc)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px;padding:8px 0 30px}
+.p{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:6px}
+.p .im{font-size:52px;text-align:center;background:var(--soft);border-radius:10px;padding:14px 0}
+.p h3{font-size:15px;margin:0}.p small{color:var(--mut)}.p .pr{font-weight:800}.p .btn{margin-top:auto;padding:9px}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;z-index:20}.ov.on{display:block}
+.dr{position:absolute;right:0;top:0;bottom:0;width:min(480px,100%);background:var(--bg);overflow-y:auto;padding:16px;padding-top:calc(16px + env(safe-area-inset-top,0px));padding-bottom:calc(24px + env(safe-area-inset-bottom,0px))}
+.row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid var(--line)}
+.q button{width:28px;height:28px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink)}
+input,textarea,select{width:100%;padding:11px;margin:4px 0 10px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:inherit}
+label{font-size:13px;color:var(--mut)}
+.note{font-size:13px;color:var(--mut);background:var(--soft);padding:10px;border-radius:10px}
+.tot{font-size:18px;font-weight:800;display:flex;justify-content:space-between;margin:12px 0}
+footer{border-top:1px solid var(--line);padding:24px 16px;text-align:center;color:var(--mut);font-size:14px}
+footer a{color:var(--acc)}
+.badge{background:var(--acc);color:var(--accink);border-radius:99px;padding:1px 8px;font-size:13px;margin-left:4px}
+#auth{max-width:380px;margin:0 auto;padding:60px 20px}
+#auth .logo{font-size:30px;text-align:center}#auth p{text-align:center;color:var(--mut)}
+.err{color:#c0392b;font-size:14px;min-height:20px}
+a.lnk{background:none;border:0;color:var(--acc);text-decoration:underline;padding:0}
+</style></head><body>
+
+<div id="auth"></div>
+<div id="app" style="display:none">
+<header><div class="logo">Shopwith<b>B2w</b></div>
+<div><button class="btn sec" id="adm" style="display:none" onclick="admin()">Orders</button> <button class="btn" onclick="openCart()">Cart <span class="badge" id="cnt">0</span></button> <button class="btn sec" onclick="logout()">Log out</button></div></header>
+<div class="wrap">
+<section class="hero"><h1>Fresh fits &amp; clean sneakers, straight from B2w.</h1>
+<p>Shop sneakers and clothes picked by a creator you trust. Order in a minute and we deliver anywhere in Nigeria.</p>
+<div class="trust"><div><b>✔ Transparent</b>Clear prices, no hidden fees</div><div><b>🚚 Nationwide delivery</b>Shipped across Nigeria</div><div><b>💬 Real support</b>Talk to the owner directly</div></div></section>
+<div style="background:var(--acc);color:var(--accink);border-radius:14px;padding:16px;margin:6px 0"><b>🔥 The B2w brand is coming soon.</b><br>Follow along and be first to shop the drop.</div>
+<div class="cats" id="cats"></div><div class="grid" id="grid"></div></div>
+<footer>© ShopwithB2w · Trusted, transparent, delivered.<br><span id="contact"></span></footer>
+</div>
+<div class="ov" id="ov" onclick="if(event.target===this)closeAll()"><div class="dr" id="dr"></div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+/* ====== EDIT THIS SECTION ====== */
+var CFG={url:"https://jiomggqtlmmprjbbpbof.supabase.co",key:"sb_publishable_Bl-54yySSSb-H5srvTq15g_YRddVQtZ"};
+var STORE={cur:"₦",whatsapp:"2348133780315",email:"therealjoeb2w1@gmail.com",shipping:3000,
+ pay:["Bank transfer","Card / USSD (payment link sent to you)","Pay on delivery (Lagos only)"],
+ payInfo:"After you place your order, we confirm it on WhatsApp and send you the account details or payment link. Your order ships once payment is confirmed."};
+var PRODUCTS=[
+{id:1,n:"Classic White Sneakers",c:"Sneakers",p:45000,e:"👟"},
+{id:2,n:"Street Runner Sneakers",c:"Sneakers",p:55000,e:"👟"},
+{id:3,n:"Premium Oversized Tee",c:"Clothing",p:15000,e:"👕"},
+{id:4,n:"Signature Hoodie",c:"Clothing",p:28000,e:"🧥"},
+{id:5,n:"Cargo Joggers",c:"Clothing",p:24000,e:"👖"},
+{id:6,n:"Two-Piece Set",c:"Clothing",p:35000,e:"👔"},
+{id:7,n:"Snapback Cap",c:"Accessories",p:8000,e:"🧢"},
+{id:8,n:"Designer Shades",c:"Accessories",p:12000,e:"🕶️"}];
+/* ================================ */
+function $(i){return document.getElementById(i)}
+function m(n){return STORE.cur+Math.round(n).toLocaleString("en-NG")}
+function find(id){return PRODUCTS.find(function(x){return x.id==id})}
+var sb=null,me=null,cart={},cat="All",mode="login";
+try{sb=supabase.createClient(CFG.url,CFG.key)}catch(e){}
+
+/* ---------- accounts ---------- */
+function showAuth(){
+$("app").style.display="none";$("auth").style.display="block";
+var s=mode=="signup";
+$("auth").innerHTML='<div class="logo">Shopwith<b>B2w</b></div><p>'+(s?"Create your account to start shopping":"Log in to shop")+'</p><label>Username</label><input id="au" autocapitalize="none" autocomplete="username"><label>Password</label><input id="ap" type="password" autocomplete="'+(s?"new-password":"current-password")+'" onkeydown="if(event.key===\'Enter\')doAuth()"><div class="err" id="aerr"></div><button class="btn" style="width:100%" onclick="doAuth()">'+(s?"Create account":"Log in")+'</button><p>'+(s?"Already have an account? ":"New here? ")+'<button class="lnk" onclick="mode=\''+(s?"login":"signup")+'\';showAuth()">'+(s?"Log in":"Create an account")+'</button></p>'}
+function aerr(t){$("aerr").textContent=t}
+async function doAuth(){
+if(!sb||CFG.url.indexOf("PASTE")==0){aerr("Store not connected yet: add your Supabase URL and key in index.html.");return}
+var u=$("au").value.trim().toLowerCase(),p=$("ap").value;
+if(!/^[a-z0-9_]{3,20}$/.test(u)){aerr("Username must be 3–20 letters, numbers or _");return}
+if(p.length<6){aerr("Password must be at least 6 characters");return}
+var email=u+"@shopwithb2w.com",r;
+try{r=mode=="signup"?await sb.auth.signUp({email:email,password:p,options:{data:{username:u}}}):await sb.auth.signInWithPassword({email:email,password:p})}catch(e){aerr("Network problem. Try again.");return}
+if(r.error){aerr(mode=="signup"?(/registered/i.test(r.error.message)?"That username is taken":r.error.message):"Wrong username or password");return}
+if(!r.data.session){aerr("Account created, but Supabase still needs “Confirm email” turned off.");return}
+start(r.data.session.user)}
+async function start(u){
+me=u;$("auth").style.display="none";$("app").style.display="block";
+var a=await sb.from("admins").select("user_id").eq("user_id",u.id);
+$("adm").style.display=(a.data&&a.data.length)?"inline-block":"none";
+$("contact").innerHTML='Signed in as <b>'+((u.user_metadata&&u.user_metadata.username)||"")+'</b> · <a href="https://wa.me/'+STORE.whatsapp+'">WhatsApp 08133780315</a> · <a href="mailto:'+STORE.email+'">'+STORE.email+'</a>';
+renderCats();renderGrid();count()}
+async function logout(){await sb.auth.signOut();me=null;cart={};closeAll();mode="login";showAuth()}
+
+/* ---------- store ---------- */
+function renderCats(){var cs=["All"].concat(PRODUCTS.map(function(p){return p.c}).filter(function(v,i,a){return a.indexOf(v)==i}));
+$("cats").innerHTML=cs.map(function(c){return '<button class="'+(c==cat?"on":"")+'" onclick="cat=\''+c+'\';renderCats();renderGrid()">'+c+'</button>'}).join("")}
+function renderGrid(){$("grid").innerHTML=PRODUCTS.filter(function(p){return cat=="All"||p.c==cat}).map(function(p){
+return '<div class="p"><div class="im">'+p.e+'</div><h3>'+p.n+'</h3><small>'+p.c+'</small><span class="pr">'+m(p.p)+'</span><button class="btn" onclick="add('+p.id+')">Add to cart</button></div>'}).join("")}
+function count(){var n=0;for(var k in cart)n+=cart[k];$("cnt").textContent=n;return n}
+function add(id){cart[id]=(cart[id]||0)+1;count();openCart()}
+function chg(id,d){cart[id]=(cart[id]||0)+d;if(cart[id]<=0)delete cart[id];count();openCart()}
+function sub(){var s=0;for(var k in cart)s+=find(k).p*cart[k];return s}
+function closeAll(){$("ov").classList.remove("on")}
+function show(h){$("dr").innerHTML=h;$("ov").classList.add("on")}
+function openCart(){
+if(!count()){show('<h2>Your cart</h2><p>Your cart is empty.</p><button class="btn sec" onclick="closeAll()">Keep shopping</button>');return}
+var h='<h2>Your cart</h2>';
+for(var k in cart){var p=find(k);h+='<div class="row"><div>'+p.e+' '+p.n+'<br><small>'+m(p.p)+'</small></div><div class="q"><button onclick="chg('+k+',-1)">−</button> '+cart[k]+' <button onclick="chg('+k+',1)">+</button></div></div>'}
+h+='<div class="row"><span>Subtotal</span><span>'+m(sub())+'</span></div><div class="row"><span>Shipping</span><span>'+m(STORE.shipping)+'</span></div>';
+h+='<div class="tot"><span>Total</span><span>'+m(sub()+STORE.shipping)+'</span></div><button class="btn" style="width:100%" onclick="checkout()">Checkout</button><p style="text-align:center"><button class="btn sec" onclick="closeAll()">Continue shopping</button></p>';
+show(h)}
+function checkout(){
+show('<h2>Checkout</h2><label>Full name</label><input id="f1" autocomplete="name"><label>Phone / WhatsApp</label><input id="f2" type="tel" autocomplete="tel"><label>Delivery address</label><textarea id="f3" rows="3" autocomplete="street-address"></textarea><label>City</label><input id="f4"><label>Payment method</label><select id="f5">'+STORE.pay.map(function(x){return '<option>'+x+'</option>'}).join("")+'</select><label>Notes (optional)</label><input id="f6"><div class="note">'+STORE.payInfo+'</div><div class="tot"><span>Total</span><span>'+m(sub()+STORE.shipping)+'</span></div><button class="btn" id="pb" style="width:100%" onclick="place()">Place order</button><p class="err" id="err"></p>')}
+async function place(){
+var v=[1,2,3,4,5,6].map(function(i){return $("f"+i).value.trim()});
+if(!v[0]||!v[1]||!v[2]||!v[3]){$("err").textContent="Please fill in name, phone, address and city.";return}
+$("pb").disabled=true;$("pb").textContent="Placing order…";
+var id="B2W-"+Date.now().toString(36).toUpperCase(),lines="",items=[],total=sub()+STORE.shipping;
+for(var k in cart){var p=find(k);items.push({name:p.n,qty:cart[k],price:p.p});lines+="• "+cart[k]+" x "+p.n+" = "+m(p.p*cart[k])+"\n"}
+var r=await sb.from("orders").insert({order_no:id,name:v[0],phone:v[1],address:v[2],city:v[3],payment:v[4],notes:v[5],items:items,total:total});
+if(r.error){$("pb").disabled=false;$("pb").textContent="Place order";$("err").textContent="Could not save your order. Check your connection and try again.";return}
+var msg="New order "+id+"\n\n"+lines+"\nShipping: "+m(STORE.shipping)+"\nTOTAL: "+m(total)+"\n\nName: "+v[0]+"\nPhone: "+v[1]+"\nAddress: "+v[2]+", "+v[3]+"\nPayment: "+v[4]+(v[5]?"\nNotes: "+v[5]:"");
+var wa="https://wa.me/"+STORE.whatsapp+"?text="+encodeURIComponent(msg);
+cart={};count();
+show('<h2>🎉 Order received!</h2><p>Order number: <b>'+id+'</b></p><p>Tap below to message us on WhatsApp so we can confirm payment and ship your order.</p><a href="'+wa+'" target="_blank" rel="noopener"><button class="btn" style="width:100%">Confirm on WhatsApp</button></a><p class="note">Keep your order number. We’ll update you on delivery.</p><button class="btn sec" onclick="closeAll()">Done</button>')}
+
+/* ---------- admin dashboard ---------- */
+function waNum(p){p=p.replace(/\D/g,"");return p.charAt(0)=="0"?"234"+p.slice(1):p}
+async function admin(){
+show('<h2>Orders</h2><button class="btn sec" onclick="admin()">Refresh</button><div id="ol" style="margin-top:12px">Loading…</div>');
+var r=await sb.from("orders").select("*").order("created_at",{ascending:false});
+var el=$("ol");if(!el)return;el.textContent="";
+if(r.error){el.textContent="Could not load orders.";return}
+if(!r.data.length){el.textContent="No orders yet.";return}
+var n=r.data.filter(function(o){return o.status=="New"}).length;
+var sm=document.createElement("p");sm.className="note";sm.textContent=r.data.length+" orders · "+n+" new";el.appendChild(sm);
+r.data.forEach(function(o){
+var c=document.createElement("div");c.className="p";c.style.marginBottom="10px";
+var t=document.createElement("div");t.style.fontWeight="700";t.textContent=o.order_no+" · "+new Date(o.created_at).toLocaleString()+" · "+m(o.total);
+var b=document.createElement("div");b.style.whiteSpace="pre-wrap";
+b.textContent=o.items.map(function(i){return i.qty+" x "+i.name}).join("\n")+"\n"+o.name+" · "+o.phone+"\n"+o.address+", "+o.city+"\nPayment: "+o.payment+(o.notes?"\nNotes: "+o.notes:"");
+var a=document.createElement("a");a.href="https://wa.me/"+waNum(o.phone);a.target="_blank";a.rel="noopener";a.textContent="Chat with customer on WhatsApp";a.style.color="var(--acc)";
+var s=document.createElement("select");["New","Paid","Shipped","Delivered"].forEach(function(x){var op=document.createElement("option");op.textContent=x;if(x==o.status)op.selected=true;s.appendChild(op)});
+s.onchange=async function(){var u=await sb.from("orders").update({status:s.value}).eq("id",o.id);if(u.error)alert("Could not update status")};
+c.appendChild(t);c.appendChild(b);c.appendChild(a);c.appendChild(s);el.appendChild(c)})}
+
+/* ---------- start ---------- */
+if(sb){sb.auth.getSession().then(function(r){if(r.data.session)start(r.data.session.user);else showAuth()})}else{showAuth()}
+</script></body></html>
